@@ -1,0 +1,416 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: Century Gothic;
+  box-sizing: border-box;
+}
+
+body{
+  min-height: 100vh;
+  background-image: linear-gradient(120deg,#34ace0,#222f3e);
+}
+
+#a{
+    width: 100%;
+    height: auto;
+    border: 4px solid #0077c0;
+    border-radius: 2%;
+}
+
+.camara{
+  width: 100%;
+  height: auto;
+  border: 4px solid #0077c0;
+  border-radius: 2%;
+}
+
+.interfaz-form{
+  width: 90%;
+  background-color: #f1f1f1;
+  height: 90%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.interfaz-form h1{
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.Boton{
+  margin: 10px;
+  width: 18%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: linear-gradient(120deg,#34ace0,#222f3e,#34ace0);
+  background-size: 200%;
+  color: #fff;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.Boton:hover{
+  background-position: right;
+}
+
+
+.Salida{
+  margin: 10px;
+  margin-left: 11%;
+  width: 8%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: linear-gradient(120deg,#34ace0,#222f3e,#34ace0);
+  background-size: 200%;
+  color: #fff;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.Salida:hover{
+  background-position: right;
+}
+
+.linea{
+  border-top: 2px solid #0077c0;
+  margin-bottom: 10px;
+}
+
+.contenedor{
+  display: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius: 3px;
+}
+
+.contenedor .printer{
+    width: 23%;
+    position: relative;
+    height: 110px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .75);
+  }
+
+.printer:hover{
+  border: 1px solid #0077c0;
+}
+
+.rep{
+  position: absolute;
+  width: 20%;
+  height: auto;
+  margin: auto;
+  left: 5%;
+  top: 35%;
+}
+
+#imagen img{
+  width: 100%;
+  height: 100%;
+}
+
+#header{
+  /* background-color: green; */
+  text-align: center;
+  height: 20%;
+  margin: 1%;
+  border-bottom: 1px solid #0077c0;
+}
+
+#footer{
+  height: 70%;
+  margin: 1%;
+}
+
+#num{
+  height: 100%;
+  width: 8%;
+  float: left;
+}
+#est{
+  height: 100%;
+  width: 8%;
+  float: left;
+}
+#estado{
+  height: 100%;
+  width: 84%;
+  float: left;
+}
+#imagen{
+  height: 100%;
+  width: 30%;
+  float: left;
+}
+#datos{
+  text-align: center;
+  height: 100%;
+  width: 70%;
+  float: left;
+}
+
+#temp_time{
+  padding-top: 4%;
+  line-height: 50%;
+  height: 80%;
+  width: 100%;
+  border-bottom: 1px solid #0077c0;
+}
+
+#nombre_pieza{
+  height: 20%;
+  width: 100%;
+}
+
+#variables{
+  padding-right: 1%;
+  color: #0077c0;
+  text-align: right;
+  height: 80%;
+  width: 50%;
+  float: left;
+}
+
+#adquiridos{
+  padding-left: 1%;
+  text-align: left;
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+
+
+input[name="printstate"] {
+  display: none;
+}
+
+input[name="printstate"] + label:before {
+  content: "\2714";
+  border: 0.05em solid #adadad;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.1em;
+  padding-bottom: 0.15em;
+  margin-right: 0.1em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
+}
+input[name="printstate"] + label:active:before {
+  transform: scale(0);
+}
+input[name="printstate"]:checked + label:before {
+  background-color: #0077c0;
+
+  color: #0077c0;
+}
+input[name="printstate"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #0077c0;
+}
+
+#precarga{
+  margin: 30vh auto 0 auto;
+  display: block;
+
+}
+
+.container{
+
+  opacity: 0;
+  transition: 1s;
+}
+
+#Botones{
+  display: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  }
+
+
+.popup{
+  z-index: +1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: none;
+}
+
+.Impresoras3D{
+
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: 5%;
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 1%;
+  min-height: 250px;
+  border-radius: 13px;
+}
+
+#pop{
+  color: #000;
+}
+#pop:hover{
+    color:#0077c0 ;
+}
+
+
+#top1{
+  position: relative;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1.5px solid #0077c0;
+}
+#mid1{
+  padding: 5%;
+  position: relative;
+  width: 100%;
+  height: 55%;
+}
+#camaraweb{
+  padding-top: 15px;
+  width: 100%;
+  height: 100%;
+
+}
+#mid2{
+  padding: 5%;
+  position: relative;
+  width: 100%;
+  height: 20%;
+}
+#mid2 img{
+  width: 100%;
+  height: 100%;
+}
+#bot1{
+  position: relative;
+  width: 100;
+  height: 15%;
+
+}
+#top1A{
+  position: relative;
+float: left;
+  width: 15%;
+  height: 100%;
+
+}
+#top1B{
+  padding-top: 2%;
+  text-align: center;
+  font-size: 2.6vh;
+  position: relative;
+float: left;
+  width: 70%;
+  height: 100%;
+}
+#top1C{
+  padding: 2.8%;
+  position: relative;
+float: left;
+  width: 15%;
+  height: 100%;
+
+}
+#top1C .img{
+  width: 100%;
+  height: 100%;
+}
+#sup{
+  padding-top: 2%;
+  font-size: 25px;
+  color: #000;
+  position: relative;
+  width: 100%;
+  height: 30%;
+}
+#inf{
+  padding-top: 5%;
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+#A{
+  text-align: right;
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 100%;
+  font-size: 22px;
+  color: #000;
+}
+#B{
+  padding-top: 1%;
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 100%;
+
+}
+#C{
+  font-size: 22px;
+  color: #000;
+  text-align: left;
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+input[name="printstate2"]{
+  position: relative;
+  width: 120px;
+  height: 20px;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+  transition: .5s;
+}
+input:checked[name="printstate2"]{
+  background: #0077c0;
+}
+input[name="printstate2"]::before{
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  background: #464646;
+  transform: scale(1.2,1.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: .5s;
+}
+input:checked[name="printstate2"]::before{
+  left: 80px;
+}

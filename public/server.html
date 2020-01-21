@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Servidor de Streaming</title>
+
+    <style type='text/css'>"
+              *{
+                margin: 0;
+                padding: 0;
+                text-decoration: none;
+                font-family: Century Gothic;
+                box-sizing: border-box;
+              }
+              body{
+                background-image: linear-gradient(120deg,#34ace0,#222f3e);
+              }
+              .videoSTREAM{
+                width: 50%;
+                background-color: #f1f1f1;
+                height: 80%;
+                border-radius: 10px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                text-align: center;
+              }
+              .Ingresar:hover{
+                background-position: right;
+              }
+              #canvas{
+                margin-top: 3%;
+                border: 5px solid #0077c0;
+                border-radius: 2%;
+              }
+              h1{
+                font-family: 'Montserrat', sans-serif;
+                font-size: 40px;
+              }
+              </style>
+               </head>
+  <body>
+
+    <form class="videoSTREAM" action="#" method="post">
+      <h1>Servidor de Streaming</h1>
+      <div class="videoCANVAS">
+    <video id="video"></video>
+    <canvas id="canvas" width="640" height="360"></canvas>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        (function(d, w, n, io){
+          'use strict'
+
+          var io = io(),
+              startCamera = false,
+              video = d.querySelector('#video'),
+              canvas = d.querySelector('#canvas'),
+              context = canvas.getContext('2d')
+
+              n.streaming = (
+                  n.getUserMedia ||
+                  n.webkitGetUserMedia ||
+                  n.mozGetUserMedia ||
+                  n.msGetUserMedia
+              )
+            n.streaming({
+              video:true,
+              audio:false
+            },function(stream){
+              startCamera = true
+    // video.src   = window.URL.createObjectURL(stream)
+    video.srcObject = stream;
+    // video.play();
+            },function(err){
+              alert('error al acceder a la camara web: ' + err)
+            })
+
+            w.playVideo = (function(cb){
+              return w.requestAnimationFrame ||
+                w.webkitRequestAnimationFrame ||
+                w.mozRequestAnimationFrame ||
+                w.msRequestAnimationFrame ||
+                function (cb) {
+                  w.setTimeout(cb, 1000/100)
+                }
+            })()
+
+            function streamVideo(context,canvas,video)
+            {
+              var outputStream = canvas.toDataURL('image/jpeg', .2)
+              context.drawImage(video,0,0)
+
+              if(startCamera)
+              io.emit('streaming', outputStream)
+
+              playVideo(function(){
+                streamVideo(context, canvas, video)
+              })
+            }
+
+            w.addEventListener('load', function(){
+              video.autoplay = true
+              video.style.display = 'none'
+              streamVideo(context, canvas, video)
+            })
+
+        })(document, window, navigator, io)
+    </script>
+    </div>
+</form>
+  </body>
+</html>
